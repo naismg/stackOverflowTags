@@ -2,11 +2,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import uvicorn
-
+from model_eda import model_, vect_
 
 # Load your trained model
-model = joblib.load("model.pkl")
-vectorizer = joblib.load("vectorizer.pkl")
+model = model_()
+vectorizer = vect_()
 
 app = FastAPI()
 
