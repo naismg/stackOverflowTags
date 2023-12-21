@@ -2,12 +2,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import uvicorn
-
+from model_eda import model, vect
 
 # Load your trained model
-model = joblib.load("model.pkl")
-vectorizer = joblib.load("vectorizer.pkl")
-
+modele = model()
+vectorizer = vect()
 app = FastAPI()
 
 class Item(BaseModel):
@@ -18,7 +17,7 @@ def predict(item: Item):
     # Vectorize the input text
     X = vectorizer.transform([item.text])
     # Make prediction
-    y_pred = model.predict(X)
+    y_pred = modele.predict(X)
     return {"prediction": y_pred[0]}
 
 if __name__ == '__main__':

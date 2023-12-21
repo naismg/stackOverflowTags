@@ -99,9 +99,8 @@ else:
 
 
 
+def model():
+    return clf
 
-# Save the model
-joblib.dump(clf, 'model.pkl')
-
-# Save the vectorizer
-joblib.dump(vectorizer, 'vectorizer.pkl')
+def vect():
+    return vectorizer
