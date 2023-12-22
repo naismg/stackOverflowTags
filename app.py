@@ -56,12 +56,10 @@ response = requests.post('https://stack-tags.onrender.com/predict', json={'text'
 
 prediction = response.json()['prediction']
 
-col1, col2, col3 = st.columns(3)
+with st.container():
+   st.empty()
 
-col2.write(f'La prédiction pour "{user_input}" est: {prediction}')
-
-
-
+st.write(f'La prédiction pour "{user_input}" est: {prediction}')
 
 if __name__ == '__main__':
     uvicorn.run(app, host='127.0.0.1', port=8000)
