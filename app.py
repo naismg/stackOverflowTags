@@ -60,7 +60,7 @@ col3, col4, col5 = st.columns(3)
 col.empty()
 col1.empty()
 
-user_input = col5.text_input("Entrez du texte ici")
+user_input = col5.text_input("")
 
 response = requests.post('https://stack-tags.onrender.com/predict', json={'text': user_input})
 
