@@ -72,30 +72,26 @@ run_name = "baseline"
 
 mlflow.set_experiment(experiment_name)
 
-runs = mlflow.search_runs(experiment_names=["projet_nlp_tag"])
-if not runs.empty :
-    if run_name in runs["tags.mlflow.runName"].values:
-        print(f"Une run avec le nom '{run_name}' existe déjà. La nouvelle run ne sera pas enregistrée.")
-else:
-    # Enregistrez le modèle avec MLflow
-    with mlflow.start_run(run_name=run_name):
-        # Enregistrez les paramètres du modèle
-        mlflow.log_param("vectorizer", "TfidfVectorizer")
-        mlflow.log_param("classifier", "MultinomialNB")
 
-        # Enregistrez les métriques d'évaluation
-        report = classification_report(y_test, y_pred, output_dict=True)
-        for label, metrics in report.items():
-            if isinstance(metrics, dict):
-                for metric_name, metric_value in metrics.items():
-                    mlflow.log_metric(f"{label}_{metric_name}", metric_value)
-            else:
-                mlflow.log_metric(label, metrics)
+# Enregistrez le modèle avec MLflow
+with mlflow.start_run(run_name=run_name):
+    # Enregistrez les paramètres du modèle
+    mlflow.log_param("vectorizer", "TfidfVectorizer")
+    mlflow.log_param("classifier", "MultinomialNB")
+
+    # Enregistrez les métriques d'évaluation
+    report = classification_report(y_test, y_pred, output_dict=True)
+    for label, metrics in report.items():
+        if isinstance(metrics, dict):
+            for metric_name, metric_value in metrics.items():
+                mlflow.log_metric(f"{label}_{metric_name}", metric_value)
+        else:
+            mlflow.log_metric(label, metrics)
 
 
 
-        # Enregistrez le modèle dans le format MLflow
-        mlflow.sklearn.log_model(clf, "model")
+    # Enregistrez le modèle dans le format MLflow
+    mlflow.sklearn.log_model(clf, "model")
 
 
 
