@@ -28,5 +28,5 @@ jobs:
     - name: Run Python script
       run: python model_eda.py  # Replace with your script's path
       env : 
-        URL : ${{env.URL}}
-        KEY : ${{env.KEY}}
+        echo URL : ${{env.URL}}
+        echo KEY : ${{env.KEY}}
