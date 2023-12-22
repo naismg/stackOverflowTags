@@ -57,9 +57,9 @@ response = requests.post('https://stack-tags.onrender.com/predict', json={'data'
 
 prediction = response.json()['prediction']
 
-col1, col2, col3 = st.beta_columns(3)
+st.empty()
 
-col2.write(f'La prédiction pour "{user_input}" est: {prediction}')
+st.write(f'La prédiction pour "{user_input}" est: {prediction}')
 
 
 
