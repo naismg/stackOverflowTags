@@ -1,8 +1,8 @@
-name: Run Python script every 5 minutes
+name: Run Python script every 1 min
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # This line sets the schedule to every 5 minutes
+    - cron: '*/1 * * * *'  # This line sets the schedule
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     - name: Set up Python environment
       uses: actions/setup-python@v2  # This step sets up a Python environment
       with:
-        python-version: '3.x'  # You can specify the Python version you need
+        python-version: '3.10'  # You can specify the Python version you need
 
     - name: Install dependencies
       run: |
