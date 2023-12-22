@@ -1,0 +1,15 @@
+artifact_uri: file:///home/ellana/code/ellanaca/Projet_simplon/stackOverflowTags/mlruns/741303055918439828/e630903515a740ebb5f1f6ac127cf40a/artifacts
+end_time: 1703242991990
+entry_point_name: ''
+experiment_id: '741303055918439828'
+lifecycle_stage: active
+run_id: e630903515a740ebb5f1f6ac127cf40a
+run_name: baseline
+run_uuid: e630903515a740ebb5f1f6ac127cf40a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703242988520
+status: 3
+tags: []
+user_id: ellana
