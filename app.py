@@ -51,7 +51,6 @@ st.markdown(f"""
 app = FastAPI()
 
 user_input = st.text_input("Entrez du texte ici")
-
 prediction = predict({'text': user_input})
 
 st.write(f'La prédiction pour "{user_input}" est: {prediction}')
