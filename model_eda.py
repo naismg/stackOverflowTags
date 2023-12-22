@@ -10,38 +10,8 @@ import mlflow.sklearn
 
 df_clean = clean_data(monitoring())[["Body_clean", "Tag"]]
 
-new_rows = []
-
-# Parcourez chaque ligne du DataFrame
-for _, row in df_clean.iterrows():
-    body_clean = row['Body_clean']
-    tags_clean = row['Tag']
-
-    # Parcourez chaque tag dans la liste de tags
-    for tag in tags_clean:
-        if tag == "":
-            break
-        # Créez une nouvelle ligne avec le même texte et le tag actuel
-        new_row = {'Body_clean': body_clean, 'Tag': tag}
-        new_rows.append(new_row)
-
-# Créez un nouveau DataFrame avec les nouvelles lignes
-new_df = pd.DataFrame(new_rows)
-
-tag_counts = new_df['Tag'].value_counts()
-
-# Sélectionnez les 25 tags les plus courants
-top_tags = tag_counts.head(25).index.tolist()
-
-# Filtrer le DataFrame en ne conservant que les lignes avec les tags les plus courants
-filtered_df = new_df[new_df['Tag'].isin(top_tags)]
-
-filtered_df["Tag"][filtered_df["Tag"]== "c#"] = "csharp"
-filtered_df["Tag"][filtered_df["Tag"]== "c++"] = "cplusplus"
-
-
 # Divisez les données en ensembles d'entraînement et de test
-X_train, X_test, y_train, y_test = train_test_split(filtered_df['Body_clean'], filtered_df['Tag'], test_size=0.2, random_state=42, stratify=filtered_df["Tag"])
+X_train, X_test, y_train, y_test = train_test_split(df_clean['Body_clean'], df_clean['Tag'], test_size=0.2, random_state=42, stratify=df_clean["Tag"])
 
 # Vectorisation du texte
 vectorizer = TfidfVectorizer()
