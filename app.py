@@ -77,9 +77,8 @@ prediction2 = response2.json()['runs']
 
 df = pd.DataFrame(prediction2)
 
-metrics = df.iloc[:,6:31]
 
-y_options = metrics.columns.tolist()
+y_options = df.columns.tolist()
 
 y_choice = st.selectbox('Choisissez une colonne pour l\'axe y', y_options)
 
