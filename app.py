@@ -55,6 +55,8 @@ user_input = st.text_input("Entrez du texte ici")
 
 response = requests.post('https://stack-tags.onrender.com/predict', json={'data': user_input})
 
+print(response)
+
 prediction = response.json()['prediction']
 
 st.empty()
