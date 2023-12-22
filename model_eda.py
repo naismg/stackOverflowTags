@@ -1,15 +1,5 @@
 import pandas as pd
-import string
-import re
-import joblib
-from bs4 import BeautifulSoup
-from nltk.corpus import stopwords
-from unidecode import unidecode
-import os
-from supabase import create_client, Client
-import pandas as pd
 from df import monitoring, clean_data
-
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
