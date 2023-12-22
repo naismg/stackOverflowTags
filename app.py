@@ -23,7 +23,7 @@ col3, col4, col5 = st.columns(3)
 col.empty()
 col1.empty()
 
-user_input = col5.text_input("")
+user_input = col4.text_input("")
 
 response = requests.post('https://stack-tags.onrender.com/predict', json={'text': user_input})
 
@@ -31,7 +31,7 @@ prediction = response.json()['prediction']
 
 col6, col7, col8 = st.columns(3)
 
-col8.write(f'La prédiction pour "{user_input}" est: {prediction}')
+col7.write(f'La prédiction pour "{user_input}" est: {prediction}')
 
 response2 = requests.get('https://stack-tags.onrender.com/search_runs')
 
