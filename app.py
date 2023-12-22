@@ -71,9 +71,11 @@ col6, col7, col8 = st.columns(3)
 
 col8.write(f'La prédiction pour "{user_input}" est: {prediction}')
 
-runs = mlflow.search_runs(experiment_names=["projet_nlp_tag"])
+response2 = requests.get('https://stack-tags.onrender.com/search_runs')
 
-df = pd.DataFrame(runs)
+prediction2 = response2.json()['runs']
+
+df = pd.DataFrame(prediction2)
 
 metrics = df.iloc[:,6:31]
 
