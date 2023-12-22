@@ -17,11 +17,31 @@ st.markdown(f"""
     background-image: {background_image};
     background-repeat: no-repeat;
     background-color: white;
-    background-position: top;
     height: 50vh; /* Ajustez cette valeur pour changer la hauteur de l'image */
 }}
 
-
+    .sidebar .sidebar-content {{
+        background: #262730;
+    }}
+    .Widget {{
+        color: white;
+    }}
+    .stTextInput > div > div > input, .stTextArea > div > div > textarea, .stFileUploader > div > input {{
+        background-color: #555e6f;
+        color: white;
+    }}
+    .stTextInput > div > div > input::placeholder, .stTextArea > div > div > textarea::placeholder {{
+        color: white;
+    }}
+    .stCheckbox label, .stRadio label {{
+        color: white;
+    }}
+    .stMarkdown p, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {{
+        color: black;
+    }}
+    .stSelectbox div[role="button"] {{
+        color: white;
+    }}
     </style>
     """,
             unsafe_allow_html=True)
