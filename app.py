@@ -4,7 +4,8 @@ import os
 from fastapi import FastAPI
 import uvicorn
 import requests
-
+import mlflow
+import plotly.express as px
 
 # generate_background_image()
 st.set_page_config(layout="wide")
@@ -69,6 +70,32 @@ prediction = response.json()['prediction']
 col6, col7, col8 = st.columns(3)
 
 col8.write(f'La prédiction pour "{user_input}" est: {prediction}')
+
+runs = mlflow.search_runs(experiment_names=["projet_nlp_tag"])
+
+df = pd.DataFrame(runs)
+
+metrics = df.iloc[:,6:31]
+
+y_options = metrics.columns.tolist()
+
+y_choice = st.selectbox('Choisissez une colonne pour l\'axe y', y_options)
+
+fig = px.scatter(
+    df,
+    x="start_time",
+    y=y_choice,
+    color="status",
+    hover_data=["run_id", "experiment_id", y_choice],
+    labels={"start_time": "Start Time", "end_time": "End Time"},
+    title="Run Status and Accuracy Over Time",
+)
+
+fig.update_layout(yaxis=dict(range=[-1, 1]))
+
+st.plotly_chart(fig)
+
+
 
 if __name__ == '__main__':
     uvicorn.run(app, host='127.0.0.1', port=8000)
