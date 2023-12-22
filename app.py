@@ -17,6 +17,7 @@ st.markdown(f"""
     background-image: {background_image};
     background-repeat: no-repeat;
     background-color: white;
+    background-position: cover;
     height: 50vh; /* Ajustez cette valeur pour changer la hauteur de l'image */
 }}
 
