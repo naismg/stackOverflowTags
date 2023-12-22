@@ -1,7 +1,5 @@
 import streamlit as st
 import pandas as pd
-from dotenv import load_dotenv
-from supabase import create_client, Client
 import os
 from fastapi import FastAPI
 import uvicorn

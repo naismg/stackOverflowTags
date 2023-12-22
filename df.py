@@ -77,14 +77,6 @@ def most_frequent_tag_df(df: pd.DataFrame):
     filtered_df["Tag"][filtered_df["Tag"]== "c++"] = "cplusplus"
     return filtered_df
 
-# def clean_data(df: pd.DataFrame):
-#     df = clean_tags(df)
-#     df['Body_clean'] = df['Body'].apply(remove_stopwords)
-#     df['Body_clean'] = df['Body'].apply(remove_accents)
-#     return df.iloc[0][1]
-
-
-
 def clean_data(df: pd.DataFrame):
     df['Body_clean'] = df['Body'].apply(clean_body)
     df['Body_clean'] = df['Body_clean'].apply(remove_stopwords).apply(remove_accents)
