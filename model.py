@@ -16,7 +16,7 @@ class Item(BaseModel):
 @app.post("/predict")
 def predict(item: Item):
     # Vectorize the input text
-    X = vectorizer.transform([item.text])
+    X = vectorizer.transform([item['text']])
     # Make prediction
     y_pred = modele.predict(X)
     return {"prediction": y_pred[0]}
