@@ -50,12 +50,6 @@ st.markdown(f"""
 
 app = FastAPI()
 
-user_input = st.text_input("Entrez du texte ici")
-
-response = requests.post('https://stack-tags.onrender.com/predict', json={'text': user_input})
-
-prediction = response.json()['prediction']
-
 col, col1 = st.columns(2)
 
 col.empty()
@@ -66,7 +60,15 @@ col3, col4, col5 = st.columns(3)
 col.empty()
 col1.empty()
 
-col4.write(f'La prédiction pour "{user_input}" est: {prediction}')
+user_input = col4.text_input("Entrez du texte ici")
+
+response = requests.post('https://stack-tags.onrender.com/predict', json={'text': user_input})
+
+prediction = response.json()['prediction']
+
+col6, col7, col8 = st.columns(3)
+
+col7.write(f'La prédiction pour "{user_input}" est: {prediction}')
 
 if __name__ == '__main__':
     uvicorn.run(app, host='127.0.0.1', port=8000)
