@@ -3,7 +3,6 @@ import pandas as pd
 import os
 from fastapi import FastAPI
 import uvicorn
-from model import predict
 import requests
 
 
