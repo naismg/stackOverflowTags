@@ -4,6 +4,7 @@ import os
 from fastapi import FastAPI
 import uvicorn
 from model import predict
+import requests
 
 
 # generate_background_image()
@@ -51,9 +52,14 @@ st.markdown(f"""
 app = FastAPI()
 
 user_input = st.text_input("Entrez du texte ici")
-prediction = predict({'text': user_input})
 
-st.write(f'La prédiction pour "{user_input}" est: {prediction}')
+response = requests.post('https://stack-tags.onrender.com/predict', json={'data': user_input})
+
+prediction = response.json()['prediction']
+
+col1, col2, col3 = st.beta_columns(3)
+
+col2.write(f'La prédiction pour "{user_input}" est: {prediction}')
 
 
 
