@@ -62,6 +62,7 @@ run_name = "baseline"
 
 mlflow.set_experiment(experiment_name)
 
+runs = mlflow.search_runs(experiment_names=["projet_nlp_tag"])
 
 with mlflow.start_run(run_name=run_name):
     # Enregistrez les paramètres du modèle
