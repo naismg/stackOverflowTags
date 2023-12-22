@@ -7,7 +7,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env :
+      URL : ${{secrets.URL}}
+      KEY : ${{secrets.KEY}}
+    
     steps:
     - name: Checkout repository content
       uses: actions/checkout@v2  # This step checks out a copy of your repository
@@ -24,3 +27,6 @@ jobs:
 
     - name: Run Python script
       run: python model_eda.py  # Replace with your script's path
+      env : 
+        URL : ${{env.URL}}
+        KEY : ${{env.KEY}}
