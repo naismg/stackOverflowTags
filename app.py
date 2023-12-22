@@ -3,6 +3,10 @@ import pandas as pd
 from dotenv import load_dotenv
 from supabase import create_client, Client
 import os
+from fastapi import FastAPI
+import uvicorn
+from model import predict
+
 
 # generate_background_image()
 st.set_page_config(layout="wide")
@@ -45,11 +49,17 @@ st.markdown(f"""
     """,
             unsafe_allow_html=True)
 
-load_dotenv()
 
-key = os.getenv("KEY")
-url = os.getenv("URL")
+app = FastAPI()
 
-supabase: Client = create_client(url, key)
-response = supabase.table('stack_tags').select("*").execute()
-stack = pd.DataFrame(response.data)
+user_input = st.text_input("Entrez du texte ici")
+
+prediction = predict(user_input)
+
+st.write(f'La prédiction pour "{user_input}" est: {prediction}')
+
+
+
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='127.0.0.1', port=8000)
